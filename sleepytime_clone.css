@@ -1,13 +1,17 @@
 body {
-    background-color: #001F3F; color: #7FDBFF; height: 1000px;
+    background-color: #001F3F;
+    color: #7FDBFF;
+    height: 1000px;
 }
 
 h1 {
-    text-align: center; font-family: Raleway-Medium; font-weight: 30;
+    text-align: center; font-family:
+    Raleway-Medium;
+    font-weight: 30;
 }
 
 a {
-    color: orange; 
+    color: #CDBC67;
 }
 
 a:hover {
@@ -26,6 +30,10 @@ select {
     width: 135px;
     padding-left: 10px;
     margin-left: 15px;
+}
+
+select:focus {
+    border-color: #33C3F0
 }
 
 .homepageParagraph {
@@ -53,7 +61,8 @@ select {
 }
 
 #results p {
-    font-size: 140%; color: #39CCCC;
+    font-size: 140%;
+    color: #39CCCC;
 }
 
 #results span {
