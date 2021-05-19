@@ -1,9 +1,5 @@
 content = document.getElementById("content")
 results = document.getElementById("results")
-select = content.getElementsByTagName("select")
-
-space = document.createElement("p")
-space.innerHTML = " 737"
 
 haveToWakeUpResult = document.getElementById("haveToWakeUpResult")
 sleepNowResult = document.getElementById("sleepNowResult")
@@ -48,12 +44,7 @@ function createOptions(optionNameHour, optionNameMinute, optionNameAMorPM) {
     for (j = 0; j <= 11; j++) {
         minuteOption = document.createElement("option")
         // To print like 2:00 or 2:05 not 2:0 or 2:5
-        if (j <= 1) {
-            x = "0" + String(j * 5)
-        }
-        else {
-            x = j * 5
-        }
+        x = j <= 1 ? "0" + String(j * 5) : j * 5
         minuteOptionNum = document.createTextNode(x)
 
         minuteOption.appendChild(minuteOptionNum)
@@ -76,34 +67,28 @@ function calculateHaveToWakeUpResult(subtractedTime) {
 
     if (selectedTimeConverted >= subtractedTime && selectedTimeConverted < 720) {
         if ((resultConverted % 60) < 10) {
-            result = String(Math.floor(resultConverted / 60)) + ":"
-                + "0" + String(resultConverted % 60) + AMorPMText
+            result = String(Math.floor(resultConverted / 60)) + ":" + "0" + String(resultConverted % 60) + AMorPMText
         }
         else {
-            result = String(Math.floor(resultConverted / 60)) + ":"
-                + String(resultConverted % 60) + AMorPMText
+            result = String(Math.floor(resultConverted / 60)) + ":" + String(resultConverted % 60) + AMorPMText
         }
     }
     else if (selectedTimeConverted < subtractedTime) {
         AMorPmSwitched = (AMorPMText === "AM") ? "PM" : "AM"
         if (((720 + resultConverted) % 60) < 10) {
-            result = String(Math.floor((720 + resultConverted) / 60)) + ":"
-                + "0" + String((720 + resultConverted) % 60) + AMorPmSwitched
+            result = String(Math.floor((720 + resultConverted) / 60)) + ":" + "0" + String((720 + resultConverted) % 60) + AMorPmSwitched
         }
         else {
-            result = String(Math.floor((720 + resultConverted) / 60)) + ":"
-                + String((720 + resultConverted) % 60) + AMorPmSwitched
+            result = String(Math.floor((720 + resultConverted) / 60)) + ":" + String((720 + resultConverted) % 60) + AMorPmSwitched
         }
     }
     else {
         AMorPmSwitched = (AMorPMText === "AM") ? "PM" : "AM"
         if ((resultConverted % 60) < 10) {
-            result = String(Math.floor(resultConverted / 60)) + ":"
-                + "0" + String(resultConverted % 60) + AMorPmSwitched
+            result = String(Math.floor(resultConverted / 60)) + ":" + "0" + String(resultConverted % 60) + AMorPmSwitched
         }
         else {
-            result = String(Math.floor(resultConverted / 60)) + ":"
-                + String(resultConverted % 60) + AMorPmSwitched
+            result = String(Math.floor(resultConverted / 60)) + ":" + String(resultConverted % 60) + AMorPmSwitched
         }
     }
     return result
@@ -117,6 +102,19 @@ function loadHaveToWakeUpResult() {
     AMorPMIndex = haveToWakeUpAMorPM.selectedIndex
     AMorPMText = haveToWakeUpAMorPM.options[AMorPMIndex].text
     
+    if (hourIndex === 0 && minuteIndex === 0) {
+        alert("Please select an hour and a minute before trying to calculate!")
+        return
+    }
+    else if (hourIndex !== 0 && minuteIndex === 0) {
+        alert("Please select a minute before trying to calculate!")
+        return
+    }
+    else if (hourIndex === 0 && minuteIndex !== 0) {
+        alert("Please select an hour before trying to calculate!")
+        return
+    }
+    else {
     advice = document.createElement("p")
     advice.innerHTML = "<br>You should try to fall asleep at one of the following times:"
     haveToWakeUpResult.appendChild(advice)
@@ -131,25 +129,16 @@ function loadHaveToWakeUpResult() {
             haveToWakeUpResult.appendChild(italic)
         }
     }
-    haveToWakeUpResult.appendChild(space)
-    haveToWakeUpResult.appendChild(space)
-    returnBtn = document.createElement("a")
-    returnBtn.innerHTML = "Calculate Again"
-    returnBtn.setAttribute("class", "returnBtn")
-    haveToWakeUpResult.appendChild(returnBtn)
-    returnBtn.addEventListener("click", init)
 
-    if (hourIndex === 0 && minuteIndex === 0) {
-        alert("Please select an hour and a minute before trying to calculate!")
-    }
-    else if (hourIndex !== 0 && minuteIndex === 0) {
-        alert("Please select a minute before trying to calculate!")
-    }
-    else if (hourIndex === 0 && minuteIndex !== 0) {
-        alert("Please select an hour before trying to calculate!")
-    }
-    else {
-        content.style.display = "none"
+    backToHomepage = document.createElement("div")
+    calculateAgain = document.createElement("a")
+    calculateAgain.innerHTML = "Calculate Again"
+    calculateAgain.href = "sleepytime_clone.html"
+    calculateAgain.setAttribute("class", "calculateAgain")
+    backToHomepage.appendChild(calculateAgain)
+    haveToWakeUpResult.appendChild(backToHomepage)
+
+    content.style.display = "none"
     }
 }
 
@@ -168,33 +157,27 @@ function calculatePlanToSleepResult(addedTime) {
 
     if (resultConverted < 720) {
         if ((resultConverted % 60) < 10) {
-            result = String(Math.floor(resultConverted / 60)) + ":"
-                + "0" + String(resultConverted % 60) + AMorPMText
+            result = String(Math.floor(resultConverted / 60)) + ":" + "0" + String(resultConverted % 60) + AMorPMText
         }
         else {
-            result = String(Math.floor(resultConverted / 60)) + ":"
-                + String(resultConverted % 60) + AMorPMText
+            result = String(Math.floor(resultConverted / 60)) + ":" + String(resultConverted % 60) + AMorPMText
         }
     }
     else if (selectedTimeConverted >= 720) {
         if ((resultConverted % 60) < 10) {
-            result = String(Math.floor((resultConverted - 720) / 60)) + ":"
-                + "0" + String((resultConverted - 720) % 60) + AMorPMText
+            result = String(Math.floor((resultConverted - 720) / 60)) + ":" + "0" + String((resultConverted - 720) % 60) + AMorPMText
         }
         else {
-            result = String(Math.floor((resultConverted - 720) / 60)) + ":"
-                + String((resultConverted - 720) % 60) + AMorPMText
+            result = String(Math.floor((resultConverted - 720) / 60)) + ":" + String((resultConverted - 720) % 60) + AMorPMText
         }
     }
     else {
         AMorPmSwitched = (AMorPMText === "AM") ? "PM" : "AM"
         if ((resultConverted % 60) < 10) {
-            result = String(Math.floor((resultConverted - 720) / 60)) + ":"
-                + "0" + String((resultConverted - 720) % 60) + AMorPmSwitched
+            result = String(Math.floor((resultConverted - 720) / 60)) + ":" + "0" + String((resultConverted - 720) % 60) + AMorPmSwitched
         }
         else {
-            result = String(Math.floor((resultConverted - 720) / 60)) + ":"
-                + String((resultConverted - 720) % 60) + AMorPmSwitched
+            result = String(Math.floor((resultConverted - 720) / 60)) + ":" + String((resultConverted - 720) % 60) + AMorPmSwitched
         }
     }
     return result
@@ -208,6 +191,19 @@ function loadPlanToSleepResult() {
     AMorPMIndex = planToSleepAMorPM.selectedIndex
     AMorPMText = planToSleepAMorPM.options[AMorPMIndex].text
 
+    if (hourIndex === 0 && minuteIndex === 0) {
+        alert("Please select an hour and a minute before trying to calculate!")
+        return
+    }
+    else if (hourIndex !== 0 && minuteIndex === 0) {
+        alert("Please select a minute before trying to calculate!")
+        return
+    }
+    else if (hourIndex === 0 && minuteIndex !== 0) {
+        alert("Please select an hour before trying to calculate!")
+        return
+    }
+    else {
     advice = document.createElement("p")
     advice.innerHTML = `<br>If you fall asleep at ${hourText}:${minuteText} ${AMorPMText}, you should try to wake up at one of the following times:`
     planToSleepResult.appendChild(advice)
@@ -222,25 +218,15 @@ function loadPlanToSleepResult() {
             planToSleepResult.appendChild(italic)
         }
     }
-    haveToWakeUpResult.appendChild(space)
-    haveToWakeUpResult.appendChild(space)
-    returnBtn = document.createElement("button")
-    returnBtn.innerHTML = "Calculate Again"
-    returnBtn.setAttribute("class", "returnBtn")
-    planToSleepResult.appendChild(returnBtn)
-    returnBtn.addEventListener("click", init)
+    backToHomepage = document.createElement("div")
+    calculateAgain = document.createElement("a")
+    calculateAgain.innerHTML = "Calculate Again"
+    calculateAgain.href = "sleepytime_clone.html"
+    calculateAgain.setAttribute("class", "calculateAgain")
+    backToHomepage.appendChild(calculateAgain)
+    planToSleepResult.appendChild(backToHomepage)
 
-    if (hourIndex === 0 && minuteIndex === 0) {
-        alert("Please select an hour and a minute before trying to calculate!")
-    }
-    else if (hourIndex !== 0 && minuteIndex === 0) {
-        alert("Please select a minute before trying to calculate!")
-    }
-    else if (hourIndex === 0 && minuteIndex !== 0) {
-        alert("Please select an hour before trying to calculate!")
-    }
-    else {
-        content.style.display = "none"
+    content.style.display = "none"
     }
 }
 
@@ -249,49 +235,36 @@ function calculateSleepNowResult(addedTime) {
     hourInt = date.getHours()
     minuteInt = date.getMinutes()
 
-    if (hourInt < 12) {
-        AMorPMText = "AM"
-    }
-    else {
-        AMorPMText = "PM"
-    }
+    AMorPMText = hourInt < 12 ? "AM" : "PM"
 
-    if (hourInt > 12) {
-        hourInt = hourInt - 12
-    }
+    hourInt = hourInt > 12 ? hourInt - 12 : hourtInt
 
     selectedTimeConverted = hourInt * 60 + minuteInt
     resultConverted = selectedTimeConverted + addedTime
 
     if (resultConverted < 720) {
         if ((resultConverted % 60) < 10) {
-            result = String(Math.floor(resultConverted / 60)) + ":"
-                + "0" + String(resultConverted % 60) + AMorPMText
+            result = String(Math.floor(resultConverted / 60)) + ":" + "0" + String(resultConverted % 60) + AMorPMText
         }
         else {
-            result = String(Math.floor(resultConverted / 60)) + ":"
-                + String(resultConverted % 60) + AMorPMText
+            result = String(Math.floor(resultConverted / 60)) + ":" + String(resultConverted % 60) + AMorPMText
         }
     }
     else if (selectedTimeConverted >= 720) {
         if ((resultConverted % 60) < 10) {
-            result = String(Math.floor((resultConverted - 720) / 60)) + ":"
-                + "0" + String((resultConverted - 720) % 60) + AMorPMText
+            result = String(Math.floor((resultConverted - 720) / 60)) + ":" + "0" + String((resultConverted - 720) % 60) + AMorPMText
         }
         else {
-            result = String(Math.floor((resultConverted - 720) / 60)) + ":"
-                + String((resultConverted - 720) % 60) + AMorPMText
+            result = String(Math.floor((resultConverted - 720) / 60)) + ":" + String((resultConverted - 720) % 60) + AMorPMText
         }
     }
     else {
         AMorPmSwitched = (AMorPMText === "AM") ? "PM" : "AM"
         if ((resultConverted % 60) < 10) {
-            result = String(Math.floor((resultConverted - 720) / 60)) + ":"
-                + "0" + String((resultConverted - 720) % 60) + AMorPmSwitched
+            result = String(Math.floor((resultConverted - 720) / 60)) + ":" + "0" + String((resultConverted - 720) % 60) + AMorPmSwitched
         }
         else {
-            result = String(Math.floor((resultConverted - 720) / 60)) + ":"
-                + String((resultConverted - 720) % 60) + AMorPmSwitched
+            result = String(Math.floor((resultConverted - 720) / 60)) + ":" + String((resultConverted - 720) % 60) + AMorPmSwitched
         }
     }
     return result
@@ -302,25 +275,10 @@ function loadSleepNowResult() {
     hourInt = date.getHours()
     minuteInt = date.getMinutes()
 
-    if (hourInt < 12) {
-        AMorPMText = "AM"
-    }
-    else {
-        AMorPMText = "PM"
-    }
-
-    if (hourInt > 12) {
-        hourInt = hourInt - 12
-    }
-
+    AMorPMText = hourInt < 12 ? "AM" : "PM"
+    hourInt = hourInt > 12 ? hourInt - 12 : hourtInt
     hourText = String(hourInt)
-
-    if (minuteInt < 10) {
-        minuteText = "0" + String(minuteInt)
-    }
-    else {
-        minuteText = String(minuteInt)
-    }
+    minuteText = minuteInt < 10 ? minuteText = "0" + String(minuteInt) : minuteText = String(minuteInt)
 
     advice = document.createElement("p")
     advice.innerHTML = "<br>If you head to bed right now, you should try to wake up at one of the following times:"
@@ -337,13 +295,13 @@ function loadSleepNowResult() {
         }
     }
 
-    haveToWakeUpResult.appendChild(space)
-    haveToWakeUpResult.appendChild(space)
-    returnBtn = document.createElement("button")
-    returnBtn.innerHTML = "Calculate Again"
-    returnBtn.setAttribute("class", "returnBtn")
-    sleepNowResult.appendChild(returnBtn)
-    returnBtn.addEventListener("click", init)
+    backToHomepage = document.createElement("div")
+    calculateAgain = document.createElement("a")
+    calculateAgain.innerHTML = "Calculate Again"
+    calculateAgain.href = "sleepytime_clone.html"
+    calculateAgain.setAttribute("class", "calculateAgain")
+    backToHomepage.appendChild(calculateAgain)
+    sleepNowResult.appendChild(backToHomepage)
 
     content.style.display = "none"
 }
