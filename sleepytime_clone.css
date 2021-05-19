@@ -66,15 +66,11 @@ select:focus {
 }
 
 #results span {
-    font-size: 300%; color: #cdbc67;
+    font-size: 300%; color: #01DF74;
 }
 
 #results i {
     font-size: 200%; color: darksalmon;
-}
-
-#results i {
-    font-size: 180%;
 }
 
 .calculateAgain {
