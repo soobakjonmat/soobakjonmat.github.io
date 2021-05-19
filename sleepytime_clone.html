@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="sleepytime_clone.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="homepage_images/cat_image_1.png">
+    <img src="homepage_images/magikarp_guy.png" alt="magikarp_guy_icon_left" style="float: left;">
+    <img src="homepage_images/magikarp_guy.png" alt="magikarp_guy_icon_right" style="float: right;">
+</head>
+
+<body align="center">
+    <title>sleepyti.me clone</title>
+        <h1 style="color: mediumaquamarine;">My First Somewhat Cloned Website</h1>
+        <p style="color: lightseagreen; font-family: Raleway; font-size: small;">
+            <a href="https://sleepyti.me/" target="_blank">Original Website</a> 
+        </p>
+        <p style="font-size: 140%; color: rgb(0, 128, 255);">
+            A good night's sleep consists of 5-6 complete sleep cyclyes</p>
+        <div id="content">
+            <div id="haveToWakeUp">
+                <p class="homepageParagraph">I have to wake up at...</p>
+                <br>
+                <select id="haveToWakeUpHour">
+                </select>
+                <select id="haveToWakeUpMinute">
+                </select>
+                <select id="haveToWakeUpAMorPM">
+                </select>
+                <br><br><br>
+                <button class="calculateBtn" id="haveToWakeUpBtn">calculate</button>
+            </div>
+            <div id="planToSleep">
+                <br>
+                <p class="homepageParagraph">I plan to fall asleep at...</p>
+                <br>
+                <select id="planToSleepHour">
+                </select>
+                <select id="planToSleepMinute">
+                </select>
+                <select id="planToSleepAMorPM">
+                </select>
+                <br><br><br>
+                <button class="calculateBtn" id="planToSleepBtn">calculate</button>
+            </div>
+            <div id="sleepNow">
+                <br>
+                <p class="homepageParagraph">If you sleep now, you should wake up at...</p>
+                <button class="calculateBtn" id="sleepNowBtn">calculate</button>
+            </div>
+    </div>
+    <div id="results">
+        <div id="haveToWakeUpResult">
+        </div>
+        <div id="planToSleepResult">
+        </div>
+        <div id="sleepNowResult">
+        </div>
+    </div>
+    <script src="sleepytime_clone.js"></script>
+</body>
+</html>

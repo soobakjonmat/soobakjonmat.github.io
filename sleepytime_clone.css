@@ -1,0 +1,86 @@
+div {
+    transition: transform 200ms, opacity 200ms; transition-timing-function: linear;
+}
+
+body {
+    background-color: #001F3F; color: #7FDBFF; height: 1000px;
+}
+
+h1 {
+    text-align: center; font-family: Raleway-Medium; font-weight: 30;
+}
+
+a {
+    color: orange; 
+}
+
+a:hover {
+    color: rgb(221, 59, 113);
+}
+
+select {
+    font-size: 100%;
+    color: #7FDBFF;
+    font-weight: 30;
+    background-color: #001F3F;
+    border-color: rgb(255,255,255);
+    border-width: 1px;
+    border-radius: 4px;
+    height: 37px;
+    width: 135px;
+    padding-left: 10px;
+    margin-left: 15px;
+}
+
+.homepageParagraph {
+    font-size: 145%;
+    font-weight: 30;
+    font-family: Raleway-Medium;
+    color: #7FDBFF;
+}
+
+.calculateBtn {
+    text-transform: uppercase;
+    border-radius: 20px;
+    color: #001F3F;
+    height: 37px;
+    width: 135px;
+    border-width: 0px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: Raleway;
+}
+
+.calculateBtn:hover {
+    background-color: rgb(200, 200, 200);
+}
+
+#results p {
+    font-size: 140%; color: #39CCCC;
+}
+
+#results span {
+    font-size: 300%; color: #cdbc67;
+}
+
+#results i {
+    font-size: 200%; color: darksalmon;
+}
+
+#results i {
+    font-size: 180%;
+}
+
+.returnBtn {
+    text-transform: uppercase;
+    border-radius: 20px;
+    color: #001F3F;
+    height: 37px;
+    width: 135px;
+    border-width: 0px;
+    cursor: pointer;
+    font-size: 100%;
+    font-weight: 600;
+    font-family: Raleway;
+}
