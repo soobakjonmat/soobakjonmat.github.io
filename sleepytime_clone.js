@@ -241,7 +241,7 @@ function calculateSleepNowResult(addedTime) {
 
     AMorPMText = hourInt < 12 ? "AM" : "PM"
 
-    hourInt = hourInt < 13 ? hourInt : hourtInt - 12
+    hourInt = hourInt < 13 ? hourInt : hourInt - 12
 
     selectedTimeConverted = hourInt * 60 + minuteInt
     resultConverted = selectedTimeConverted + addedTime
@@ -277,15 +277,6 @@ function calculateSleepNowResult(addedTime) {
 }
 
 function loadSleepNowResult() {
-    date = new Date()
-    hourInt = date.getHours()
-    minuteInt = date.getMinutes()
-
-    AMorPMText = hourInt < 12 ? "AM" : "PM"
-    hourInt = hourInt > 12 ? hourInt - 12 : hourtInt
-    hourText = String(hourInt)
-    minuteText = minuteInt < 10 ? minuteText = "0" + String(minuteInt) : minuteText = String(minuteInt)
-
     advice = document.createElement("p")
     advice.innerHTML = "<br>If you head to bed right now, you should try to wake up at one of the following times:"
     sleepNowResult.appendChild(advice)
